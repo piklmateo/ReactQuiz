@@ -1,0 +1,27 @@
+.questions-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  height: 50vh;
+  width: 100%;
+
+  .btn-option {
+    width: 100%;
+    padding: 1rem;
+    transition: 150ms;
+
+    &:hover {
+      background-color: #5858587c;
+    }
+  }
+
+  .correct-option {
+    background-color: rgb(80, 132, 180);
+  }
+
+  .wrong-option {
+    background-color: rgb(255, 196, 88);
+  }
+}
