@@ -4,12 +4,14 @@
   justify-content: center;
   align-items: center;
   gap: 1rem;
-  padding: 1rem;
-  margin-top: 2rem;
+  padding-inline: 1rem;
+  width: 100%;
+  max-width: 500px;
+  margin-top: 1rem;
 
   .btn-option {
     width: 100%;
-    min-width: 400px;
+
     padding: 1rem;
     transition: 150ms;
 
@@ -19,6 +21,7 @@
   }
 
   .question-text {
+    margin-top: 2rem;
     text-align: center;
   }
 
@@ -29,4 +32,17 @@
   .wrong-option {
     background-color: rgb(255, 196, 88);
   }
+}
+
+progress[value] {
+  border: none;
+}
+progress[value]::-webkit-progress-bar {
+  border-radius: 16px;
+  background: #585858;
+}
+progress[value]::-webkit-progress-value {
+  border-radius: 1em;
+  background: linear-gradient(#fff8, #fff0),
+    repeating-linear-gradient(135deg, #0003 0 10px, #0000 0 20px), #31c6f7;
 }

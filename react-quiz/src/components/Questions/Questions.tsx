@@ -24,40 +24,49 @@ const Questions = ({
   nextQuestion,
 }: QuestionsProps) => {
   return (
-    <div className="questions-container">
-      <h3 className="question-text">
-        {currentQuestionIndex +
-          1 +
-          "/" +
-          questions.length +
-          " " +
-          "- " +
-          question.question}
-      </h3>
-      {question.options.map((option, index) => (
-        <button
-          key={index}
-          className={`btn btn-option ${
-            selectedAnswer === index
-              ? isCorrect
-                ? "correct-option"
-                : "wrong-option"
-              : ""
-          }`}
-          onClick={() => onHandleChooseAnswer(index)}
-          disabled={selectedAnswer !== null}
-        >
-          {option}
-        </button>
-      ))}
-      <Footer
-        questions={questions}
-        nextQuestion={nextQuestion}
-        currentQuestionIndex={currentQuestionIndex}
-        selectedAnswer={selectedAnswer}
-        timer={timer}
-      />
-    </div>
+    <>
+      <div className="questions-container">
+        <h3 className="question-text">
+          {currentQuestionIndex +
+            1 +
+            "/" +
+            questions.length +
+            " " +
+            "- " +
+            question.question}
+        </h3>
+      </div>
+      <progress
+        className="progress"
+        value={currentQuestionIndex}
+        max={questions.length}
+      ></progress>
+      <div className="questions-container">
+        {question.options.map((option, index) => (
+          <button
+            key={index}
+            className={`btn btn-option ${
+              selectedAnswer === index
+                ? isCorrect
+                  ? "correct-option"
+                  : "wrong-option"
+                : ""
+            }`}
+            onClick={() => onHandleChooseAnswer(index)}
+            disabled={selectedAnswer !== null}
+          >
+            {option}
+          </button>
+        ))}
+        <Footer
+          questions={questions}
+          nextQuestion={nextQuestion}
+          currentQuestionIndex={currentQuestionIndex}
+          selectedAnswer={selectedAnswer}
+          timer={timer}
+        />
+      </div>
+    </>
   );
 };
 
