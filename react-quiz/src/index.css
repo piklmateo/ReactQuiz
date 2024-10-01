@@ -111,8 +111,6 @@ textarea:not([rows]) {
   flex-direction: column;
   align-items: center;
   gap: 1rem;
-  width: 600px;
-  margin: 0 auto;
 }
 
 .btn {

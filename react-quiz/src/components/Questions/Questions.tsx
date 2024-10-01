@@ -1,3 +1,4 @@
+import Footer from "../Footer/Footer";
 import { Question } from "../Main/Main";
 import "./Questions.scss";
 
@@ -8,6 +9,8 @@ interface QuestionsProps {
   onHandleChooseAnswer: (optionId: number) => void;
   selectedAnswer: number | null;
   isCorrect: boolean | null;
+  timer: number;
+  nextQuestion: () => void;
 }
 
 const Questions = ({
@@ -17,6 +20,8 @@ const Questions = ({
   onHandleChooseAnswer,
   isCorrect,
   selectedAnswer,
+  timer,
+  nextQuestion,
 }: QuestionsProps) => {
   return (
     <div className="questions-container">
@@ -45,6 +50,13 @@ const Questions = ({
           {option}
         </button>
       ))}
+      <Footer
+        questions={questions}
+        nextQuestion={nextQuestion}
+        currentQuestionIndex={currentQuestionIndex}
+        selectedAnswer={selectedAnswer}
+        timer={timer}
+      />
     </div>
   );
 };

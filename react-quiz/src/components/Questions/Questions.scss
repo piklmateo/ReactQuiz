@@ -4,11 +4,12 @@
   justify-content: center;
   align-items: center;
   gap: 1rem;
-  margin-top: 5rem;
-  width: 100%;
+  padding: 1rem;
+  margin-top: 2rem;
 
   .btn-option {
     width: 100%;
+    min-width: 400px;
     padding: 1rem;
     transition: 150ms;
 
@@ -19,7 +20,6 @@
 
   .question-text {
     text-align: center;
-    margin-bottom: 1rem;
   }
 
   .correct-option {

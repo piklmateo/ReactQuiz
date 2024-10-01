@@ -4,7 +4,6 @@ import { fetchQuestions } from "../../services/questionsService";
 import Questions from "../Questions/Questions";
 import "./Main.scss";
 import EndingScreen from "../EndingScreen/EndingScreen";
-import Footer from "../Footer/Footer";
 
 export interface Question {
   question: string;
@@ -180,12 +179,7 @@ const Main = () => {
             onHandleChooseAnswer={handleChooseAnswer}
             selectedAnswer={selectedAnswer}
             isCorrect={isCorrect}
-          />
-          <Footer
-            questions={questions}
             nextQuestion={nextQuestion}
-            currentQuestionIndex={currentQuestionIndex}
-            selectedAnswer={selectedAnswer}
             timer={timer}
           />
         </>
