@@ -4,6 +4,7 @@ import { fetchQuestions } from "../../services/questionsService";
 import Questions from "../Questions/Questions";
 import "./Main.scss";
 import EndingScreen from "../EndingScreen/EndingScreen";
+import Footer from "../Footer/Footer";
 
 export interface Question {
   question: string;
@@ -15,7 +16,7 @@ export interface Question {
 const initialState = {
   questions: [] as Question[],
   currentQuestionIndex: 0,
-  timer: 10,
+  timer: 600,
   status: "start",
   selectedAnswer: null as number | null,
   isCorrect: null as boolean | null,
@@ -79,7 +80,7 @@ const reducer = (state: typeof initialState, action: Action) => {
       return {
         ...state,
         currentQuestionIndex: 0,
-        timer: 10,
+        timer: 600,
         status: "start",
         selectedAnswer: null,
         isCorrect: null,
@@ -161,6 +162,11 @@ const Main = () => {
     }
   };
 
+  const totalPoints = questions.reduce(
+    (accumulator, question) => accumulator + question.points,
+    0
+  );
+
   return (
     <div className="container">
       {status === "start" && <StartScreen onStart={handleStart} />}
@@ -168,28 +174,30 @@ const Main = () => {
       {status === "ongoing" && questions.length > 0 && (
         <>
           <Questions
+            questions={questions}
             question={questions[currentQuestionIndex]}
+            currentQuestionIndex={currentQuestionIndex}
             onHandleChooseAnswer={handleChooseAnswer}
             selectedAnswer={selectedAnswer}
             isCorrect={isCorrect}
           />
-          <div className="question-navigation">
-            <button className="btn btn-ui">{timer.toString()}</button>
-            <button
-              className="btn btn-ui"
-              onClick={nextQuestion}
-              disabled={
-                currentQuestionIndex === questions.length - 1 ||
-                selectedAnswer === null
-              }
-            >
-              Next
-            </button>
-          </div>
+          <Footer
+            questions={questions}
+            nextQuestion={nextQuestion}
+            currentQuestionIndex={currentQuestionIndex}
+            selectedAnswer={selectedAnswer}
+            timer={timer}
+          />
         </>
       )}
 
-      {status === "end" && <EndingScreen dispatch={dispatch} points={points} />}
+      {status === "end" && (
+        <EndingScreen
+          dispatch={dispatch}
+          points={points}
+          totalPoints={totalPoints}
+        />
+      )}
     </div>
   );
 };
